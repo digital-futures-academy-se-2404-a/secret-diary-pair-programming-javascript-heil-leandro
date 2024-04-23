@@ -7,9 +7,18 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Hei, Leandro",
+  "author": "Heil, Leandro",
   "license": "ISC",
   "devDependencies": {
     "jasmine": "^5.1.0"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/digital-futures-academy-se-2404-a/secret-diary-pair-programming-javascript-heil-leandro.git"
+  },
+  "keywords": [],
+  "bugs": {
+    "url": "https://github.com/digital-futures-academy-se-2404-a/secret-diary-pair-programming-javascript-heil-leandro/issues"
+  },
+  "homepage": "https://github.com/digital-futures-academy-se-2404-a/secret-diary-pair-programming-javascript-heil-leandro#readme"
 }
