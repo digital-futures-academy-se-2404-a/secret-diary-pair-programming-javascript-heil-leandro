@@ -51,6 +51,14 @@ describe("Diary Class Tests:", () => {
     });
 
     describe("Diary writing tests", () => {
+        let testDiary;
+        
+        beforeEach(() => {
+            //Setup diary instance before each test
+            testDiary = new Diary();
+            //testDiary.setPin(pin);
+        });
+        
         it("should not be able to use addEntry when the diary is locked.", () => {
             testDiary.isLocked = true;
             const readingAttempt = testDiary.addEntry();
