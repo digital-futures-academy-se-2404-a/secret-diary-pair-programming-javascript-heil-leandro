@@ -1,5 +1,4 @@
 import Diary from "../src/Diary.js";
-import Entry from "../src/Entry.js";
 
 describe("Diary Class Tests:", () => {
     describe("Diary Initialisation Tests", () => {
@@ -32,8 +31,8 @@ describe("Diary Class Tests:", () => {
 
         it("should correctly provide the date and text of each entry in the diary", () => {
             // Arrange 
-            const entry1 = new Entry('2024-04-23', 'First entry text');
-            const entry2 = new Entry('2024-04-24', 'Second entry text');
+            const entry1 = jasmine.createSpyObj('entry1', [], { date: '2024-04-23', text: 'First entry text' });
+            const entry2 = jasmine.createSpyObj('entry2', [], { date: '2024-04-24', text: 'Second entry text' });
             // testDiary.unlock(pin);
             testDiary.addEntry(entry1);
             testDiary.addEntry(entry2);
@@ -52,7 +51,7 @@ describe("Diary Class Tests:", () => {
 
     describe("Diary writing tests", () => {
         let testDiary;
-        
+
         beforeEach(() => {
             //Setup diary instance before each test
             testDiary = new Diary();
@@ -69,7 +68,7 @@ describe("Diary Class Tests:", () => {
 
         it("should be able to use addEntry when the diary is locked.", () => {
             testDiary.isLocked = false;
-            const entry1 = new Entry('2024-04-23', 'First entry text');
+            const entry1 = jasmine.createSpyObj('entry1', [], { date: '2024-04-23', text: 'First entry text' });
 
             const readingAttempt = testDiary.addEntry(entry1);
             
