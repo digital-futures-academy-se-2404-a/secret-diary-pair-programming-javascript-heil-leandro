@@ -31,7 +31,7 @@ describe("Diary Class Tests:", () => {
         });
 
         it("should correctly provide the date and text of each entry in the diary", () => {
-            // Arrange
+            // Arrange 
             const entry1 = new Entry('2024-04-23', 'First entry text');
             const entry2 = new Entry('2024-04-24', 'Second entry text');
             // testDiary.unlock(pin);
@@ -47,6 +47,35 @@ describe("Diary Class Tests:", () => {
             expect(entries[0].text).toBe('First entry text');
             expect(entries[1].date).toBe('2024-04-24');
             expect(entries[1].text).toBe('Second entry text');
+        });
+    });
+
+    describe("Diary writing tests", () => {
+        it("should not be able to use addEntry when the diary is locked.", () => {
+            testDiary.isLocked = true;
+            const readingAttempt = testDiary.addEntry();
+            
+            // Assert
+            expect(readingAttempt).toBe(false);
+        });
+
+        it("should be able to use addEntry when the diary is locked.", () => {
+            testDiary.isLocked = false;
+            const entry1 = new Entry('2024-04-23', 'First entry text');
+
+            const readingAttempt = testDiary.addEntry(entry1);
+            
+            // Assert
+            expect(readingAttempt).toBe(true);
+        });
+
+        it("should not accept null as an input to addEntry.", () => {
+            testDiary.isLocked = false; 
+
+            const readingAttempt = testDiary.addEntry(null);
+            
+            // Assert
+            expect(readingAttempt).toBe(true);
         });
     });
 
