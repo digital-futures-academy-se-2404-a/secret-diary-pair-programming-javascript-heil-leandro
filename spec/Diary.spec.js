@@ -66,7 +66,7 @@ describe("Diary Class Tests:", () => {
             expect(readingAttempt).toBe(false);
         });
 
-        it("should be able to use addEntry when the diary is locked.", () => {
+        it("should be able to use addEntry when the diary is unlocked.", () => {
             testDiary.isLocked = false;
             const entry1 = jasmine.createSpyObj('entry1', [], { date: '2024-04-23', text: 'First entry text' });
 
@@ -83,6 +83,32 @@ describe("Diary Class Tests:", () => {
             
             // Assert
             expect(readingAttempt).toBe(true);
+        });
+    });
+
+    describe("Diary locking tests", () => {
+        let testDiary;
+
+        beforeEach(() => {
+            //Setup diary instance before each test
+            testDiary = new Diary();
+            //testDiary.setPin(pin);
+        });
+        
+        it("should be able to lock the diary when unlocked", () => {
+            testDiary.isLocked = false;
+            const readingAttempt = testDiary.lock();
+            
+            // Assert
+            expect(readingAttempt).toBe(true) && expect(testDiary.getLockStatus()).toBe(true);
+        });
+
+        it("should not be able to lock the diary when locked", () => {
+            testDiary.isLocked = true;
+            const readingAttempt = testDiary.lock();
+            
+            // Assert
+            expect(readingAttempt).toBe(false) && expect(testDiary.getLockStatus()).toBe(true);
         });
     });
 

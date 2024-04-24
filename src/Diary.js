@@ -16,6 +16,10 @@ class Diary{
     addEntry(entry) {
         this.#entries.push(entry);
     }
+
+    getLockStatus() {
+        return this.isLocked;
+    }
 }
 
 export default Diary;
