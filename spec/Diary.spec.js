@@ -110,6 +110,38 @@ describe("Diary Class Tests:", () => {
             // Assert
             expect(readingAttempt).toBe(false) && expect(testDiary.getLockStatus()).toBe(true);
         });
+
+        it("should be able to unlock the diary when locked", () => {
+            testDiary.isLocked = true;
+            const attempt = testDiary.unlock("1234"); 
+            
+            // Assert
+            expect(attempt).toBe(true) && expect(testDiary.getLockStatus()).toBe(false);
+        });
+
+        it("should not be able to unlock the diary when unlocked", () => {
+            testDiary.isLocked = false;
+            const attempt = testDiary.unlock("1234");
+            
+            // Assert
+            expect(attempt).toBe(false) && expect(testDiary.getLockStatus()).toBe(false);
+        });
+
+        it("should not be able to unlock the diary when locked when the pin is wrong.", () => {
+            testDiary.isLocked = true;
+            const attempt = testDiary.unlock("5555");
+            
+            // Assert
+            expect(attempt).toBe(false) && expect(testDiary.getLockStatus()).toBe(true);
+        });
+
+        it("should not be able to unlock the diary when locked when the pin is null.", () => {
+            testDiary.isLocked = true;
+            const attempt = testDiary.unlock(null);
+            
+            // Assert
+            expect(attempt).toBe(false) && expect(testDiary.getLockStatus()).toBe(true);
+        });
     });
 
 });
